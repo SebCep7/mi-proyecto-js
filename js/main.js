@@ -1,25 +1,56 @@
-let continuar = "si";
-let personasConsultadas = 0;
 
-while (continuar === "si") {
-
-    const nombre = prompt("Ingresá tu nombre:");
-    const edad = parseInt(prompt("Ingresá tu edad:"));
-
-    if (edad >= 18) {
-        alert("Hola " + nombre + ", podés ingresar al evento.");
-    } else if (edad >= 16) {
-        alert("Hola " + nombre + ", podés ingresar acompañado por un adulto.");
-    } else {
-        alert("Hola " + nombre + ", no podés ingresar al evento.");
-    }
-
-    personasConsultadas = personasConsultadas + 1;
-
-    continuar = prompt("¿Querés consultar otra persona? Escribí si o no.");
+function calcularSubtotal(precio, cantidad) {
+    return precio * cantidad;
 }
 
-alert("Simulador finalizado. Personas consultadas: " + personasConsultadas);
 
-console.log("Simulador finalizado.");
-console.log("Personas consultadas: " + personasConsultadas);
+const calcularDescuento = (subtotal, porcentaje) => {
+    return subtotal - (subtotal * porcentaje / 100);
+};
+
+const mostrarResultado = function(subtotal, total) {
+    alert(
+        "Subtotal: $" + subtotal +
+        "\nTotal a pagar: $" + total
+    );
+};
+
+let continuar = true;
+
+while (continuar) {
+
+    const precio = Number(prompt("Ingrese el precio del producto:"));
+    const cantidad = Number(prompt("Ingrese la cantidad:"));
+
+    if (precio > 0 && cantidad > 0) {
+
+        const subtotal = calcularSubtotal(precio, cantidad);
+
+        let descuento = 0;
+
+        if (subtotal >= 100000) {
+            descuento = 10;
+        }
+
+        const total = calcularDescuento(subtotal, descuento);
+
+        mostrarResultado(subtotal, total);
+
+        console.log("Subtotal: $" + subtotal);
+        console.log("Descuento: " + descuento + "%");
+        console.log("Total: $" + total);
+
+    } else {
+        alert("Los valores ingresados no son válidos.");
+    }
+
+    const respuesta = prompt(
+        "¿Desea realizar otro cálculo? SI / NO"
+    );
+
+    if (respuesta === null || respuesta.toLowerCase() !== "si") {
+        continuar = false;
+    }
+}
+
+alert("Calculadora finalizada.");
