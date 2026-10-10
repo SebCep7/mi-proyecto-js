@@ -1,56 +1,52 @@
 
-function calcularSubtotal(precio, cantidad) {
-    return precio * cantidad;
-}
+const productos = [
+    "Auriculares",
+    "Cargador",
+    "Funda",
+    "Mouse",
+    "Teclado"
+];
+
+// Agregar productos
+productos.push("Cable HDMI");
+productos.unshift("Notebook");
+
+// Eliminar el último producto
+const productoEliminado = productos.pop();
+
+alert("Se ha eliminado el elemento: " + productoEliminado);
 
 
-const calcularDescuento = (subtotal, porcentaje) => {
-    return subtotal - (subtotal * porcentaje / 100);
-};
+const productoBuscado = prompt("¿Qué producto querés buscar?");
 
-const mostrarResultado = function(subtotal, total) {
+if (productos.includes(productoBuscado)) {
+
+    const posicion = productos.indexOf(productoBuscado);
+
     alert(
-        "Subtotal: $" + subtotal +
-        "\nTotal a pagar: $" + total
-    );
-};
-
-let continuar = true;
-
-while (continuar) {
-
-    const precio = Number(prompt("Ingrese el precio del producto:"));
-    const cantidad = Number(prompt("Ingrese la cantidad:"));
-
-    if (precio > 0 && cantidad > 0) {
-
-        const subtotal = calcularSubtotal(precio, cantidad);
-
-        let descuento = 0;
-
-        if (subtotal >= 100000) {
-            descuento = 10;
-        }
-
-        const total = calcularDescuento(subtotal, descuento);
-
-        mostrarResultado(subtotal, total);
-
-        console.log("Subtotal: $" + subtotal);
-        console.log("Descuento: " + descuento + "%");
-        console.log("Total: $" + total);
-
-    } else {
-        alert("Los valores ingresados no son válidos.");
-    }
-
-    const respuesta = prompt(
-        "¿Desea realizar otro cálculo? SI / NO"
+        productoBuscado +
+        " está disponible en la posición " +
+        posicion
     );
 
-    if (respuesta === null || respuesta.toLowerCase() !== "si") {
-        continuar = false;
-    }
+} else {
+
+    alert(productoBuscado + " no está disponible");
+
 }
 
-alert("Calculadora finalizada.");
+productos.splice(2, 1, "USB");
+
+
+function mostrarProductos(lista) {
+
+    console.log("--- PRODUCTOS DISPONIBLES ---");
+
+    for (const producto of lista) {
+        console.log("Producto: " + producto);
+    }
+
+    console.log("Total de productos: " + lista.length);
+}
+
+mostrarProductos(productos);
