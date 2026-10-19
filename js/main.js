@@ -1,52 +1,37 @@
 
-const productos = [
-    "Auriculares",
-    "Cargador",
-    "Funda",
-    "Mouse",
-    "Teclado"
-];
+class Producto {
+    constructor(id, nombre, precio, stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
 
-// Agregar productos
-productos.push("Cable HDMI");
-productos.unshift("Notebook");
-
-// Eliminar el último producto
-const productoEliminado = productos.pop();
-
-alert("Se ha eliminado el elemento: " + productoEliminado);
-
-
-const productoBuscado = prompt("¿Qué producto querés buscar?");
-
-if (productos.includes(productoBuscado)) {
-
-    const posicion = productos.indexOf(productoBuscado);
-
-    alert(
-        productoBuscado +
-        " está disponible en la posición " +
-        posicion
-    );
-
-} else {
-
-    alert(productoBuscado + " no está disponible");
-
+    
+    aplicarDescuento(porcentaje) {
+        this.precio = this.precio - (this.precio * porcentaje / 100);
+    }
 }
 
-productos.splice(2, 1, "USB");
+
+const producto1 = new Producto(1, "Auriculares", 25000, 10);
+const producto2 = new Producto(2, "Mouse", 15000, 20);
+const producto3 = new Producto(3, "Teclado", 30000, 5);
+
+const productos = [producto1, producto2, producto3];
+
+producto1.aplicarDescuento(10);
+producto2.aplicarDescuento(20);
 
 
 function mostrarProductos(lista) {
-
-    console.log("--- PRODUCTOS DISPONIBLES ---");
-
     for (const producto of lista) {
-        console.log("Producto: " + producto);
+        console.log(
+            producto.nombre +
+            " - Precio: $" + producto.precio +
+            " - Stock: " + producto.stock
+        );
     }
-
-    console.log("Total de productos: " + lista.length);
 }
 
 mostrarProductos(productos);
