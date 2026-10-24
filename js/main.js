@@ -12,7 +12,7 @@ class Producto {
     }
 }
 
-// Array de objetos
+
 const productos = [
     new Producto(1, "Auriculares", 25000, 10),
     new Producto(2, "Mouse", 15000, 20),
@@ -21,7 +21,7 @@ const productos = [
     new Producto(5, "Webcam", 45000, 8)
 ];
 
-// Función para mostrar productos
+
 function mostrarProductos(lista) {
     for (const producto of lista) {
         console.log(producto.nombre + " - $" + producto.precio);
