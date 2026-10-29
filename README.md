@@ -2,39 +2,57 @@
 
 ## Sobre mi proyecto
 
-En este proyecto desarrollé una calculadora de compras utilizando JavaScript, como parte de las pre-entregas del curso de Coderhouse.
+En este proyecto sigo desarrollando mi Calculadora de Compras como parte del curso de JavaScript de Coderhouse.
 
-La idea es simular una pequeña tienda donde puedo buscar productos, consultar sus precios, verificar cuáles están disponibles y calcular el valor total del stock.
+En las entregas anteriores trabajé con funciones, arrays, objetos y métodos como `find()`, `filter()` y `reduce()`.
 
-## ¿Qué puedo hacer con el simulador?
+En esta nueva pre-entrega empecé a trabajar con el DOM y los eventos para que el usuario pueda interactuar directamente con la página, sin necesidad de utilizar `prompt`, `alert` o `console.log`.
 
-- Buscar un producto por su nombre.
-- Consultar los productos que tienen stock disponible.
-- Calcular el valor total de los productos en stock.
+## ¿Qué puedo hacer con mi simulador?
 
-## ¿Qué aprendí?
+- Ver los productos disponibles con sus precios y stock.
+- Agregar nuevos productos mediante un formulario.
+- Eliminar productos de la lista.
+- Buscar productos por su nombre.
+- Calcular automáticamente el valor total del stock.
+- Ver mensajes en pantalla cuando agrego o elimino un producto.
 
-A lo largo de las pre-entregas fui incorporando diferentes herramientas de JavaScript, como funciones, condicionales, ciclos, arrays y objetos.
+## ¿Qué aprendí en esta entrega?
 
-En esta sexta pre-entrega trabajé especialmente con las funciones de orden superior:
+En esta etapa aprendí a conectar JavaScript con los elementos de HTML y a modificar el contenido de la página.
 
-- `find()`: para buscar un producto.
-- `filter()`: para mostrar los productos disponibles.
-- `reduce()`: para calcular el valor total del stock.
+Utilicé:
+
+- `querySelector()` para seleccionar elementos del HTML.
+- `innerHTML` para mostrar los productos dinámicamente.
+- `addEventListener()` para detectar acciones del usuario.
+- `preventDefault()` para evitar que el formulario recargue la página.
+- `push()` y `splice()` para agregar y eliminar productos.
+- `filter()` para buscar productos.
+- `reduce()` para calcular el valor total del stock.
+
+Lo que más me gustó de esta entrega fue poder ver cómo los cambios aparecen directamente en la página, sin tener que recargarla.
 
 ## Tecnologías utilizadas
 
 - HTML5
+- CSS3
 - JavaScript
 
 ## ¿Cómo funciona?
 
-Para utilizar el simulador, simplemente abro el archivo `index.html` en el navegador.
+Para probar mi proyecto, simplemente abro el archivo `index.html` en el navegador.
 
-La interacción se realiza mediante `prompt` y `alert`, mientras que algunos resultados se muestran en la consola del navegador.
+Desde la página puedo agregar productos ingresando su nombre, precio y stock. También puedo buscarlos o eliminarlos.
+
+Cada vez que realizo una acción, la lista se actualiza automáticamente.
+
+## Próximos pasos
+
+Mi idea es seguir mejorando la Calculadora de Compras, agregando nuevas funciones y mejorando el diseño a medida que avance con JavaScript.
 
 ## Autor
 
 Sebastián Loitegui
 
-**Curso de JavaScript — Coderhouse | Pre-Entrega 6**
+**Pre-Entrega: Interfaz dinámica con DOM y Eventos**
