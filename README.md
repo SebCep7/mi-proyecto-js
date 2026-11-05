@@ -4,55 +4,57 @@
 
 En este proyecto sigo desarrollando mi Calculadora de Compras como parte del curso de JavaScript de Coderhouse.
 
-En las entregas anteriores trabajé con funciones, arrays, objetos y métodos como `find()`, `filter()` y `reduce()`.
-
-En esta nueva pre-entrega empecé a trabajar con el DOM y los eventos para que el usuario pueda interactuar directamente con la página, sin necesidad de utilizar `prompt`, `alert` o `console.log`.
+En las entregas anteriores aprendí a trabajar con funciones, arrays, objetos, DOM y eventos. Ahora incorporé localStorage para que los productos que agrego o modifico queden guardados en el navegador.
 
 ## ¿Qué puedo hacer con mi simulador?
 
-- Ver los productos disponibles con sus precios y stock.
-- Agregar nuevos productos mediante un formulario.
-- Eliminar productos de la lista.
+- Ver los productos con sus precios y stock.
+- Agregar nuevos productos.
+- Eliminar productos.
+- Modificar el precio y el stock.
 - Buscar productos por su nombre.
-- Calcular automáticamente el valor total del stock.
-- Ver mensajes en pantalla cuando agrego o elimino un producto.
+- Calcular el valor total del stock.
+- Vaciar la lista de productos.
+- Mantener los datos guardados aunque actualice la página.
 
 ## ¿Qué aprendí en esta entrega?
 
-En esta etapa aprendí a conectar JavaScript con los elementos de HTML y a modificar el contenido de la página.
+En esta pre-entrega aprendí a utilizar localStorage para guardar y recuperar información.
 
-Utilicé:
+También trabajé con:
 
-- `querySelector()` para seleccionar elementos del HTML.
-- `innerHTML` para mostrar los productos dinámicamente.
-- `addEventListener()` para detectar acciones del usuario.
-- `preventDefault()` para evitar que el formulario recargue la página.
-- `push()` y `splice()` para agregar y eliminar productos.
-- `filter()` para buscar productos.
-- `reduce()` para calcular el valor total del stock.
+- `JSON.stringify()` para guardar mis productos.
+- `JSON.parse()` para recuperar los datos.
+- Operador ternario para simplificar condiciones.
+- Destructuring para acceder a las propiedades de los objetos.
+- Operadores modernos como `??` y `?.`.
+- DOM y eventos para actualizar la página sin recargarla.
 
-Lo que más me gustó de esta entrega fue poder ver cómo los cambios aparecen directamente en la página, sin tener que recargarla.
+Lo que más me gustó fue poder agregar productos, actualizar la página y comprobar que siguen guardados. Antes, cada vez que recargaba, perdía los cambios.
 
 ## Tecnologías utilizadas
 
 - HTML5
 - CSS3
 - JavaScript
+- LocalStorage
 
 ## ¿Cómo funciona?
 
-Para probar mi proyecto, simplemente abro el archivo `index.html` en el navegador.
+Para probar mi proyecto, abro el archivo `index.html` en el navegador.
 
-Desde la página puedo agregar productos ingresando su nombre, precio y stock. También puedo buscarlos o eliminarlos.
+Desde la página puedo agregar, modificar, buscar y eliminar productos.
 
-Cada vez que realizo una acción, la lista se actualiza automáticamente.
+Cada vez que realizo un cambio, los datos se guardan automáticamente en localStorage y la lista se actualiza.
 
 ## Próximos pasos
 
-Mi idea es seguir mejorando la Calculadora de Compras, agregando nuevas funciones y mejorando el diseño a medida que avance con JavaScript.
+Mi idea es seguir mejorando la Calculadora de Compras, incorporando nuevas funciones y mejorando su diseño a medida que avance con el curso.
 
 ## Autor
 
 Sebastián Loitegui
 
-**Pre-Entrega: Interfaz dinámica con DOM y Eventos**
+**Curso de JavaScript — Coderhouse**
+
+**Pre-Entrega 8: Sincronización de estado entre DOM y Storage**
