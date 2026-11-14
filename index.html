@@ -1,17 +1,20 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Compras</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
 </head>
 <body>
 
     <main class="contenedor">
         <h1>Calculadora de Compras</h1>
         <p>Mi simulador de productos con JavaScript</p>
+
+        <p id="consejo"></p>
 
         <h2>Agregar producto</h2>
 
@@ -32,12 +35,16 @@
 
         <h2>Mis productos</h2>
 
+        <button id="cargar" type="button">Cargar productos</button>
+        <p id="estado-carga" role="status" aria-live="polite"></p>
+
         <input type="text" id="buscador"
             placeholder="Buscar producto...">
 
         <div id="contenedor-productos"></div>
 
         <h2 id="total"></h2>
+
         <button type="button" id="vaciar">
             Vaciar lista
         </button>

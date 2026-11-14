@@ -113,3 +113,37 @@ button:hover {
 #vaciar:hover {
     background-color: #334155;
 }
+
+
+
+#consejo {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#consejo:empty {
+    display: none;
+}
+
+#cargar {
+    background-color: #2563eb;
+    margin-bottom: 10px;
+}
+
+#cargar:hover {
+    background-color: #1d4ed8;
+}
+
+#cargar:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+#estado-carga {
+    color: #15803d;
+    font-weight: bold;
+    min-height: 20px;
+}

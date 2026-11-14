@@ -20,12 +20,17 @@ let productos = datosGuardados !== null
     ? JSON.parse(datosGuardados) ?? []
     : productosIniciales;
 
+
 const formulario = document.querySelector("#formulario");
 const contenedor = document.querySelector("#contenedor-productos");
 const mensaje = document.querySelector("#mensaje");
 const buscador = document.querySelector("#buscador");
 const total = document.querySelector("#total");
 const botonVaciar = document.querySelector("#vaciar");
+const consejo = document.querySelector("#consejo");
+const botonCargar = document.querySelector("#cargar");
+const estadoCarga = document.querySelector("#estado-carga");
+
 
 function guardarProductos() {
     localStorage.setItem("productos", JSON.stringify(productos));
@@ -48,24 +53,29 @@ function mostrarProductos() {
 
     for (const producto of filtrados) {
         const { id, nombre, precio, stock } = producto;
+
         contenedor.innerHTML += `
             <div class="producto">
                 <h3>${limpiarTexto(nombre)}</h3>
                 <p>Precio: $${precio}</p>
                 <p>Stock: ${stock}</p>
+
                 <label>
                     Nuevo precio:
                     <input type="number" class="editar-precio"
-                        data-id="${id}" value="${precio}" min="1">
+                        value="${precio}" min="1">
                 </label>
+
                 <label>
                     Nuevo stock:
                     <input type="number" class="editar-stock"
-                        data-id="${id}" value="${stock}" min="0">
+                        value="${stock}" min="0">
                 </label>
+
                 <button class="guardar-cambios" data-id="${id}">
                     Guardar cambios
                 </button>
+
                 <button class="eliminar" data-id="${id}">
                     Eliminar
                 </button>
@@ -81,7 +91,6 @@ function mostrarProductos() {
 
     actualizarTotal();
 }
-
 
 function actualizarTotal() {
     const resultado = productos.reduce(
@@ -99,26 +108,23 @@ formulario.addEventListener("submit", function(event) {
     const precio = Number(document.querySelector("#precio").value);
     const stock = Number(document.querySelector("#stock").value);
 
-    if (nombre === "" || precio <= 0 || stock < 0) {
+    if (nombre === "" || precio <= 0 || stock < 0 ||
+        !Number.isInteger(stock)) {
         mensaje.textContent = "Ingresá datos válidos.";
         return;
     }
 
     const nuevoProducto = new Producto(
-        Date.now(),
-        nombre,
-        precio,
-        stock
+        Date.now(), nombre, precio, stock
     );
 
     productos.push(nuevoProducto);
-
     guardarProductos();
+
     buscador.value = "";
     mostrarProductos();
 
-    mensaje.textContent = "Producto agregado y guardado correctamente.";
-
+    mensaje.textContent = "Producto agregado correctamente.";
     formulario.reset();
 });
 
@@ -146,9 +152,8 @@ contenedor.addEventListener("click", function(event) {
             tarjeta.querySelector(".editar-stock").value
         );
 
-        if (precio <= 0 || stock < 0 ||
-            !Number.isInteger(stock)) {
-            mensaje.textContent = "Ingresá un precio y stock válidos.";
+        if (precio <= 0 || stock < 0 || !Number.isInteger(stock)) {
+            mensaje.textContent = "Ingresá valores válidos.";
             return;
         }
 
@@ -166,10 +171,7 @@ contenedor.addEventListener("click", function(event) {
     }
 });
 
-
-buscador.addEventListener("input", function() {
-    mostrarProductos();
-});
+buscador.addEventListener("input", mostrarProductos);
 
 botonVaciar.addEventListener("click", function() {
     productos = [];
@@ -179,5 +181,46 @@ botonVaciar.addEventListener("click", function() {
 
     mensaje.textContent = "La lista quedó vacía.";
 });
+
+setTimeout(() => {
+    consejo.textContent =
+        "Consejo: Compará precios y revisá el stock antes de comprar.";
+}, 3000);
+
+// PRE-ENTREGA 9: PROMESA
+function obtenerProductos() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Array.isArray(productos)) {
+                resolve(productos);
+            } else {
+                reject(new Error("No se pudieron cargar los productos"));
+            }
+        }, 1500);
+    });
+}
+
+async function cargarProductos() {
+    botonCargar.disabled = true;
+    estadoCarga.textContent = "Cargando productos...";
+
+    try {
+        const datos = await obtenerProductos();
+
+        mostrarProductos();
+
+        estadoCarga.textContent =
+            datos.length + " productos cargados correctamente.";
+
+    } catch (error) {
+        estadoCarga.textContent =
+            "No se pudieron cargar los productos. Intentá de nuevo.";
+
+    } finally {
+        botonCargar.disabled = false;
+    }
+}
+
+botonCargar.addEventListener("click", cargarProductos);
 
 mostrarProductos();
