@@ -8,29 +8,24 @@ class Producto {
     }
 }
 
-const productosIniciales = [
-    new Producto(1, "Auriculares", 25000, 10),
-    new Producto(2, "Mouse", 15000, 20),
-    new Producto(3, "Teclado", 30000, 5)
-];
-
-const datosGuardados = localStorage.getItem("productos");
-
-let productos = datosGuardados !== null
-    ? JSON.parse(datosGuardados) ?? []
-    : productosIniciales;
-
+let productos = [];
 
 const formulario = document.querySelector("#formulario");
 const contenedor = document.querySelector("#contenedor-productos");
-const mensaje = document.querySelector("#mensaje");
 const buscador = document.querySelector("#buscador");
 const total = document.querySelector("#total");
+const estadoCarga = document.querySelector("#estado-carga");
 const botonVaciar = document.querySelector("#vaciar");
 const consejo = document.querySelector("#consejo");
-const botonCargar = document.querySelector("#cargar");
-const estadoCarga = document.querySelector("#estado-carga");
 
+function mostrarMensaje(texto, tipo = "success") {
+    Swal.fire({
+        text: texto,
+        icon: tipo,
+        timer: 1800,
+        showConfirmButton: false
+    });
+}
 
 function guardarProductos() {
     localStorage.setItem("productos", JSON.stringify(productos));
@@ -101,6 +96,51 @@ function actualizarTotal() {
     total.textContent = "Valor total del stock: $" + resultado;
 }
 
+async function cargarProductos() {
+    estadoCarga.textContent = "Cargando productos...";
+
+    try {
+        const respuesta = await fetch("./data.json");
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudo cargar el archivo JSON");
+        }
+
+        const datos = await respuesta.json();
+
+        if (!Array.isArray(datos)) {
+            throw new Error("Los datos no son válidos");
+        }
+
+        const guardados = localStorage.getItem("productos");
+
+        productos = guardados !== null
+            ? JSON.parse(guardados) ?? []
+            : datos;
+
+        if (!Array.isArray(productos)) {
+            throw new Error("Los productos guardados no son válidos");
+        }
+
+        mostrarProductos();
+
+        estadoCarga.textContent =
+            productos.length + " productos cargados correctamente.";
+
+        mostrarMensaje("Productos cargados con éxito");
+
+    } catch (error) {
+        estadoCarga.textContent = "Error al cargar productos.";
+
+        mostrarMensaje(
+            "No se pudieron cargar los productos. Intentá de nuevo.",
+            "error"
+        );
+
+    } finally {
+        estadoCarga.dataset.finalizado = "true";
+    }
+}
 formulario.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -108,9 +148,9 @@ formulario.addEventListener("submit", function(event) {
     const precio = Number(document.querySelector("#precio").value);
     const stock = Number(document.querySelector("#stock").value);
 
-    if (nombre === "" || precio <= 0 || stock < 0 ||
-        !Number.isInteger(stock)) {
-        mensaje.textContent = "Ingresá datos válidos.";
+    if (nombre === "" || precio <= 0 ||
+        stock < 0 || !Number.isInteger(stock)) {
+        mostrarMensaje("Ingresá datos válidos", "error");
         return;
     }
 
@@ -123,9 +163,9 @@ formulario.addEventListener("submit", function(event) {
 
     buscador.value = "";
     mostrarProductos();
-
-    mensaje.textContent = "Producto agregado correctamente.";
     formulario.reset();
+
+    mostrarMensaje("Producto agregado correctamente");
 });
 
 contenedor.addEventListener("click", function(event) {
@@ -138,7 +178,7 @@ contenedor.addEventListener("click", function(event) {
         guardarProductos();
         mostrarProductos();
 
-        mensaje.textContent = "Producto eliminado correctamente.";
+        mostrarMensaje("Producto eliminado correctamente");
     }
 
     if (boton.classList.contains("guardar-cambios")) {
@@ -152,8 +192,9 @@ contenedor.addEventListener("click", function(event) {
             tarjeta.querySelector(".editar-stock").value
         );
 
-        if (precio <= 0 || stock < 0 || !Number.isInteger(stock)) {
-            mensaje.textContent = "Ingresá valores válidos.";
+        if (precio <= 0 || stock < 0 ||
+            !Number.isInteger(stock)) {
+            mostrarMensaje("Ingresá valores válidos", "error");
             return;
         }
 
@@ -166,11 +207,10 @@ contenedor.addEventListener("click", function(event) {
             guardarProductos();
             mostrarProductos();
 
-            mensaje.textContent = "Cambios guardados correctamente.";
+            mostrarMensaje("Cambios guardados correctamente");
         }
     }
 });
-
 buscador.addEventListener("input", mostrarProductos);
 
 botonVaciar.addEventListener("click", function() {
@@ -179,48 +219,12 @@ botonVaciar.addEventListener("click", function() {
     guardarProductos();
     mostrarProductos();
 
-    mensaje.textContent = "La lista quedó vacía.";
+    mostrarMensaje("La lista quedó vacía");
 });
 
 setTimeout(() => {
     consejo.textContent =
-        "Consejo: Compará precios y revisá el stock antes de comprar.";
+        "Consejo: Compará precios antes de realizar una compra.";
 }, 3000);
 
-// PRE-ENTREGA 9: PROMESA
-function obtenerProductos() {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (Array.isArray(productos)) {
-                resolve(productos);
-            } else {
-                reject(new Error("No se pudieron cargar los productos"));
-            }
-        }, 1500);
-    });
-}
-
-async function cargarProductos() {
-    botonCargar.disabled = true;
-    estadoCarga.textContent = "Cargando productos...";
-
-    try {
-        const datos = await obtenerProductos();
-
-        mostrarProductos();
-
-        estadoCarga.textContent =
-            datos.length + " productos cargados correctamente.";
-
-    } catch (error) {
-        estadoCarga.textContent =
-            "No se pudieron cargar los productos. Intentá de nuevo.";
-
-    } finally {
-        botonCargar.disabled = false;
-    }
-}
-
-botonCargar.addEventListener("click", cargarProductos);
-
-mostrarProductos();
+cargarProductos();

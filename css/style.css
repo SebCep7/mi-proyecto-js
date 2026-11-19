@@ -147,3 +147,34 @@ button:hover {
     font-weight: bold;
     min-height: 20px;
 }
+#estado-carga {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+#estado-carga:empty {
+    display: none;
+}
+
+#consejo {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+#consejo:empty {
+    display: none;
+}
+
+.producto {
+    transition: background-color 0.2s;
+}
+
+.producto:hover {
+    background-color: #dbeafe;
+}

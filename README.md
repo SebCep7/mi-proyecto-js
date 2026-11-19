@@ -4,55 +4,55 @@
 
 En este proyecto sigo desarrollando mi Calculadora de Compras como parte del curso de JavaScript de Coderhouse.
 
-En las entregas anteriores fui incorporando funciones, arrays, objetos, DOM, eventos y localStorage.
+A lo largo de las entregas fui incorporando funciones, arrays, objetos, DOM, eventos, localStorage y promesas.
 
-En esta nueva pre-entrega empecé a trabajar con asincronismo y promesas para simular la carga de productos y mostrar información al usuario después de unos segundos.
+En esta nueva pre-entrega aprendí a trabajar con archivos JSON, peticiones mediante fetch y librerías de JavaScript para mejorar la experiencia del usuario.
 
 ## ¿Qué puedo hacer con mi simulador?
 
 - Ver los productos con sus precios y stock.
 - Agregar nuevos productos.
 - Buscar y eliminar productos.
-- Modificar precios y stock.
-- Guardar los cambios con localStorage.
+- Modificar los precios y el stock.
 - Calcular el valor total del stock.
-- Vaciar la lista de productos.
-- Simular una carga de productos con un botón.
-- Recibir un consejo de compras después de unos segundos.
+- Guardar los cambios en localStorage.
+- Cargar productos desde un archivo JSON.
+- Recibir notificaciones cuando realizo alguna acción.
 
 ## ¿Qué aprendí en esta entrega?
 
-En esta etapa aprendí cómo funciona el asincronismo en JavaScript y cómo puedo utilizarlo dentro de mi proyecto.
+En esta etapa aprendí a utilizar fetch para obtener información desde un archivo JSON local y mostrarla en la página.
 
-Trabajé con:
+También trabajé con:
 
-- `setTimeout()` para mostrar un mensaje después de tres segundos.
-- `Promise` para simular la carga de productos.
-- `async/await` para esperar el resultado de la promesa.
-- `try...catch...finally` para manejar posibles errores y finalizar la operación.
+- `fetch()` para obtener los productos.
+- `async/await` para esperar la respuesta.
+- `try...catch...finally` para manejar posibles errores.
+- SweetAlert2 para mostrar notificaciones.
+- DOM para mostrar los productos de forma dinámica.
 
-Lo que más me interesó fue aprender a simular una carga de datos sin detener el funcionamiento de la página.
+Lo que más me gustó fue poder cargar productos desde un archivo externo y utilizar una librería para que los mensajes sean más claros y visuales.
 
 ## Tecnologías utilizadas
 
 - HTML5
 - CSS3
 - JavaScript
+- JSON
 - localStorage
+- SweetAlert2
 
 ## ¿Cómo funciona?
 
-Para probar mi proyecto, abro el archivo `index.html` en el navegador.
+Para probar mi proyecto, abro la carpeta desde Visual Studio Code y utilizo Live Server para ejecutar la página.
 
-Puedo agregar, modificar, buscar y eliminar productos. Los cambios quedan guardados en localStorage.
+Al ingresar, el simulador obtiene los productos desde un archivo JSON. Si ya tengo productos guardados en localStorage, se mantienen los cambios anteriores.
 
-También incorporé un botón para simular la carga de los productos. Mientras espero, aparece un mensaje de carga y, cuando termina, se informa cuántos productos se cargaron.
-
-Además, unos segundos después de ingresar a la página aparece un consejo relacionado con las compras.
+Puedo agregar, modificar, buscar y eliminar productos, y cada acción muestra una notificación en pantalla.
 
 ## Próximos pasos
 
-Mi idea es seguir mejorando el simulador y aprender a trabajar con datos externos, aplicando los conocimientos que voy incorporando durante el curso.
+Mi idea es seguir mejorando la Calculadora de Compras y aprender a conectar el proyecto con APIs reales para obtener información de otros servicios.
 
 ## Autor
 
@@ -60,4 +60,4 @@ Sebastián Loitegui
 
 **Curso de JavaScript — Coderhouse**
 
-**Pre-Entrega 9: Asincronismo y Promesas**
+**Pre-Entrega 10: APIs, Peticiones y Librerías**

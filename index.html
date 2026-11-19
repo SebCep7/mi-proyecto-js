@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Compras</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -13,41 +14,24 @@
     <main class="contenedor">
         <h1>Calculadora de Compras</h1>
         <p>Mi simulador de productos con JavaScript</p>
-
         <p id="consejo"></p>
-
         <h2>Agregar producto</h2>
-
         <form id="formulario">
             <input type="text" id="nombre"
                 placeholder="Nombre del producto" required>
-
             <input type="number" id="precio"
                 placeholder="Precio" min="1" required>
-
             <input type="number" id="stock"
                 placeholder="Stock" min="0" required>
-
             <button type="submit">Agregar producto</button>
         </form>
-
-        <p id="mensaje" role="status" aria-live="polite"></p>
-
         <h2>Mis productos</h2>
-
-        <button id="cargar" type="button">Cargar productos</button>
         <p id="estado-carga" role="status" aria-live="polite"></p>
-
         <input type="text" id="buscador"
             placeholder="Buscar producto...">
-
         <div id="contenedor-productos"></div>
-
         <h2 id="total"></h2>
-
-        <button type="button" id="vaciar">
-            Vaciar lista
-        </button>
+        <button type="button" id="vaciar">Vaciar lista</button>
     </main>
 
 </body>
